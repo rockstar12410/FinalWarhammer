@@ -11,6 +11,22 @@
 <body>
 {% block body %}
 
+{% for new_item in newlist %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{newlist.image}}" alt="" width="250" height="300">
+            </div>
+
+            <div class="col-md-6">
+                <h1>{{newlist.product}}</h1>
+                <h1>{{newlist.price}}</h1>
+                <p>{{newlist.description}}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
 {% endblock %}
 </body>
 </html>
