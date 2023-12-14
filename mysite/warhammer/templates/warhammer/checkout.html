@@ -11,6 +11,27 @@
 <body>
 {% block body %}
 
+{% for finalitem in final %}
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-6">
+                <h1>{{finalitem.product}}</h1>
+                <h5>${{finalitem.price}}</h5>
+                <p>{{finalitem.type}}</p>
+            </div>
+
+            <br>
+        </div>
+    </div>
+{% endfor %}
+    <div class="container">
+        <div class="row">
+            <p>Total Cost = ${{totalcost}}</p>
+            <a href="/reciept" class="button">Checkout</a>
+        </div>
+    </div>
 {% endblock %}
 </body>
 </html>

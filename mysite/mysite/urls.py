@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from warhammer import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('newbuy/', views.newbuy, name='newbuy'),
     path('usedbuy/', views.usedbuy, name='usedbuy'),
-    path('checkout/', views.checkout, name='checkout'),
-    path('createuseditem/', views.usedform, name='usedform')
+    path('atcheckouts/', views.atcheckouts, name='checkout'),
+    path('createuseditem/', views.usedform, name='usedform'),
+    path('reciept/', views.checkreciept, name='reciept')
+
 ]

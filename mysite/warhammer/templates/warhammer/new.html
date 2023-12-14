@@ -10,22 +10,60 @@
 </head>
 <body>
 {% block body %}
+<h2>Buy New Items</h2>
 
+    <div class="row">
+        <h5>Search by name</h5>
+        <form action="" METHOD="get">
+            <input type="search" name="name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <h5>Search by Tag</h5>
+        <form action="" METHOD="get">
+            <input type="search" name="tag">
+            <button type="submit">Search</button>
+        </form>
+
+
+</div>
+<br>
+<br>
 {% for new_item in newlist %}
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{newlist.image}}" alt="" width="250" height="300">
+                <img src="{{new_item.image}}" alt="" width="250" height="300">
             </div>
 
             <div class="col-md-6">
-                <h1>{{newlist.product}}</h1>
-                <h1>{{newlist.price}}</h1>
-                <p>{{newlist.description}}</p>
+                <h1>{{new_item.product}}</h1>
+                <h1>${{new_item.price}}</h1>
+                <p>tags: {{new_item.tags}}</p>
+                <p>description: {{new_item.description}}</p>
             </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="{{new_item.id}}">
+                <button type="submit">Add to Cart</button>
+            </form>
+            <br>
         </div>
     </div>
+    <br>
 {% endfor %}
+
+{% if newlist.has_previous %}
+    <a href="?page=1" class="btn btn-success">First</a>
+    <a href="?page={{ newlist.previous_page_number }}" class="btn btn-success">Previous</a>
+{% endif %}
+Pages: {{ newlist.number }} of {{ newlist.paginator.num_pages }}
+{% if newlist.has_next %}
+    <a href="?page={{ newlist.next_page_number }}" class="btn btn-success">Next</a>
+    <a href="?page={{ newlist.paginator.num_pages }}" class="btn btn-success">Last</a>
+{% endif %}
 
 {% endblock %}
 </body>

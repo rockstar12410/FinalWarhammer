@@ -9,7 +9,7 @@ class NewBuy(models.Model):
     description = models.TextField(max_length=2000)
     price = models.FloatField()
     tags = models.TextField(max_length=2000)
-    image = models.ImageField(upload_to='Images/')
+    image = models.CharField(max_length=500)
 
 class usedBuy(models.Model):
     def __str__(self):
@@ -27,6 +27,6 @@ class checkout(models.Model):
     def __str__(self):
         return self.product
     product = models.CharField(max_length=200)
-    price = models.FloatField
-    type = models.CharField
+    price = models.FloatField()
+    type = models.CharField(max_length=200)
 

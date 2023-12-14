@@ -10,6 +10,61 @@
 </head>
 <body>
 {% block body %}
+<h2>Buy Used Items</h2>
+
+    <div class="row">
+        <h5>Search by name</h5>
+        <form action="" METHOD="get">
+            <input type="search" name="name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <h5>Search by Condition</h5>
+        <form action="" METHOD="get">
+            <input type="search" name="tag">
+            <button type="submit">Search</button>
+        </form>
+
+
+</div>
+<br>
+<br>
+{% for new_item in usedlist %}
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-6">
+                <h1>{{new_item.product}}</h1>
+                <h1>${{new_item.price}}</h1>
+                <p>phone: {{new_item.phone}}</p>
+                <p>email: {{new_item.email}}</p>
+                <p>description: {{new_item.description}}</p>
+                <p>seller: {{new_item.seller}}</p>
+                <p>Condition: {{new_item.condition}}</p>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="{{new_item.id}}">
+                <button type="submit">Add to Cart</button>
+            </form>
+
+        </div>
+    </div>
+    <br>
+{% endfor %}
+
+{% if usedlist.has_previous %}
+    <a href="?page=1" class="btn btn-success">First</a>
+    <a href="?page={{ usedlist.previous_page_number }}" class="btn btn-success">Previous</a>
+{% endif %}
+Pages: {{ usedlist.number }} of {{ usedlist.paginator.num_pages }}
+{% if usedlist.has_next %}
+    <a href="?page={{ usedlist.next_page_number }}" class="btn btn-success">Next</a>
+    <a href="?page={{ usedlist.paginator.num_pages }}" class="btn btn-success">Last</a>
+{% endif %}
 
 {% endblock %}
 </body>
